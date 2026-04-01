@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RBM Traders</title>
+
+    <style>
+        
+        body {
+            margin: 0;
+            font-family: "Comic Sans MS", "Apple Chancery", "Snell Roundhand", cursive;
+            background: linear-gradient(to right, #f0f0f0, #dcdcdc);
+        }
+  
+        .top-bar {
+            height: 70px;
+            width: 100%;
+            background: linear-gradient(90deg, #d60000, #ff3b3b);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+            box-sizing: border-box;
+            color: white;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 25px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+        }
+
+        .nav-links {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a, .location a {
+            text-decoration: none;
+            color: red;
+            background: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: 0.6px;
+            transition: 0.3s;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+
+        .nav-links a:hover, .location a:hover {
+            background: #ffe5e5;
+            transform: translateY(-2px);
+        }
+
+        .location a {
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: 0.6px;
+        }
+
+        .content {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        h2 {
+            font-size: 46px;
+            color: #d60000;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            margin: auto;
+            width: 60%;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="top-bar">
+
+        <div class="logo">
+            <img src="logo.jpeg" alt="RBM Traders Logo">
+            <div class="logo-text">RBM Traders</div>
+        </div>
+
+        <div class="nav-links">
+            <a href="#">Products</a>
+            <a href="#">Customer Care</a>
+            <a href="#">Offers</a>
+            <a href="#">Contact</a>
+        </div>
+
+        <div class="location">
+            <a href="https://maps.app.goo.gl/C1o8YdZam9SvYt7T8?g_st=awb">📍Location</a>
+        </div>
+
+    </div>
+
+    <div class="content">
+        <div class="card">
+            <h2>Welcome to RBM Traders</h2>
+            <p>Your trusted partner for quality products and services.</p>
+        </div>
+    </div>
+
+</body>
+</html>
