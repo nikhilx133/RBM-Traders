@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>RBM Traders</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<!-- External CSS -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+<h1>RBM Traders<br>Building Strong Foundations...</h1>
+<div class="loading-dots">
+<span></span><span></span><span></span>
+</div>
+</div>
+
+<!-- NAVBAR -->
+<div class="navbar">
+<div class="menu-btn" id="menuBtn">
+<span></span><span></span><span></span>
+</div>
+<div class="logo"><img src="logo.jpeg"><b>RBM Traders</b></div>
+</div>
+
+<!-- MENU -->
+<div class="side-menu" id="sideMenu">
+<a href="#"><i class="fas fa-box"></i> Products</a>
+<a href="#"><i class="fas fa-images"></i> Gallery</a>
+<a href="#"><i class="fas fa-phone"></i> Contact</a>
+<a href="#"><i class="fas fa-file-invoice"></i> Quotation</a>
+<div class="location"><a href="https://maps.app.goo.gl/C1o8YdZam9SvYt7T8?g_st=awb" target="_blank"><i class="fas fa-location-dot"></i> View Location</a></div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<!-- HERO BANNER IMAGE -->
+<div class="hero-banner">
+<img src="p1.jpeg" alt="RBM Traders - Boundary Wall, Cement Chairs, Taar Fencing, Cement Manhole Cover" style="width:100%;height:auto;display:block;">
+</div>
+
+<!-- ABOUT -->
+<div class="section reveal">
+<h2>Who We Are</h2>
+<p>
+RBM Traders is built on strong values and practical expertise.
+We have consistently delivered results by maintaining strict standards, honoring commitments,
+and understanding the real needs of our clients.
+</p>
+</div>
+
+<!-- SERVICES -->
+<div class="section reveal">
+<h2>What We Offer</h2>
+<div class="cards">
+<div class="card"><h3>Assured Quality</h3><p>Every product passes through careful checks to meet reliable standards.</p></div>
+<div class="card"><h3>Consistent Supply</h3><p>We ensure uninterrupted availability so your operations run smoothly.</p></div>
+<div class="card"><h3>Professional Support</h3><p>Clear communication and dependable service at every stage.</p></div>
+</div>
+</div>
+
+<!-- CTA -->
+<div class="cta">
+<p>Looking for dependable solutions? Get a personalized quote today and secure your supply with RBM Traders.</p>
+<a href="#">Get a Quote</a>
+</div>
+
+<div class="footer">
+© 2026 RBM Traders • Built with Trust & Excellence
+</div>
+
+<script>
+// MENU TOGGLE
+const menuBtn=document.getElementById("menuBtn");
+const sideMenu=document.getElementById("sideMenu");
+const overlay=document.getElementById("overlay");
+const loader=document.getElementById("loader");
+
+menuBtn.onclick=()=>{
+menuBtn.classList.toggle("active");
+sideMenu.classList.toggle("active");
+overlay.classList.toggle("active");
+};
+
+// CLOSE MENU WHEN CLICKING OUTSIDE
+overlay.onclick=()=>{
+menuBtn.classList.remove("active");
+sideMenu.classList.remove("active");
+overlay.classList.remove("active");
+};
+document.addEventListener('click', e=>{
+    if(!sideMenu.contains(e.target) && !menuBtn.contains(e.target)){
+        menuBtn.classList.remove("active");
+        sideMenu.classList.remove("active");
+        overlay.classList.remove("active");
+    }
+});
+
+// LOADER FADE OUT
+window.onload = ()=>{
+setTimeout(()=>{
+loader.classList.add('hidden'); // fade out
+setTimeout(()=>{loader.style.display='none';},1000);
+},2000);
+};
+
+// SCROLL REVEAL
+const reveals=document.querySelectorAll(".reveal");
+function reveal(){
+let h=window.innerHeight;
+reveals.forEach(el=>{
+if(el.getBoundingClientRect().top<h-100){
+el.classList.add("active");
+}
+});
+}
+window.addEventListener("scroll",reveal);
+window.addEventListener("load",reveal);
+</script>
+
+</body>
+</html>
