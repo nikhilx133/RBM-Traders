@@ -328,12 +328,13 @@ function closeMenu() {
 }
 
 function openLanguageChooser() {
+    languageModal.classList.remove("hidden");
     languageModal.classList.add("active");
     document.body.classList.add("language-pending");
 }
 
 function closeLanguageChooser() {
-    languageModal.classList.remove("active");
+    languageModal.classList.add("hidden");
     document.body.classList.remove("language-pending");
 }
 
