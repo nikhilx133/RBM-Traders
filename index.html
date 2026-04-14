@@ -46,18 +46,21 @@
         <a href="#gallery" data-i18n="menuGallery">Gallery</a>
         <a href="#contact" data-i18n="menuContact">Contact</a>
         <a href="#quote" data-i18n="menuQuotation">Quotation</a>
+        <a href="https://maps.app.goo.gl/C1o8YdZam9SvYt7T8?g_st=awb" target="_blank" rel="noreferrer" data-i18n="viewLocation">
+            <i class="fas fa-location-dot"></i> Location
+        </a>
     </nav>
     <button class="language-trigger" id="openLanguageModal" type="button" data-i18n="languageButton">Language</button>
 </header>
 
 <aside class="side-menu" id="sideMenu" aria-label="Mobile menu">
+    <button class="side-language-btn" id="sideLanguageButton" type="button">
+        <i class="fas fa-language"></i> <span data-i18n="languageButton">Language</span>
+    </button>
     <a href="#services"><i class="fas fa-box"></i> <span data-i18n="menuProducts">Products</span></a>
     <a href="#gallery"><i class="fas fa-images"></i> <span data-i18n="menuGallery">Gallery</span></a>
     <a href="#contact"><i class="fas fa-phone"></i> <span data-i18n="menuContact">Contact</span></a>
     <a href="#quote"><i class="fas fa-file-invoice"></i> <span data-i18n="menuQuotation">Quotation</span></a>
-    <button class="side-language-btn" id="sideLanguageButton" type="button">
-        <i class="fas fa-language"></i> <span data-i18n="languageButton">Language</span>
-    </button>
     <div class="location">
         <a href="https://maps.app.goo.gl/C1o8YdZam9SvYt7T8?g_st=awb" target="_blank" rel="noreferrer">
             <i class="fas fa-location-dot"></i> <span data-i18n="viewLocation">View Location</span>
@@ -66,6 +69,15 @@
 </aside>
 
 <div class="overlay" id="overlay"></div>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/918059807552?text=Hello%20RBM%20Traders,%20I%20want%20to%20know%20more%20about%20your%20products%20and%20pricing." 
+   class="whatsapp-float" 
+   target="_blank" 
+   rel="noopener noreferrer"
+   aria-label="Chat with RBM Traders on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
 
 <main id="top">
     <section class="hero">
@@ -78,7 +90,11 @@
                 Our focus is simple: build lasting relationships through reliability, transparency, and performance.
             </p>
             <div class="hero-actions">
-                <a href="#services" class="btn" data-i18n="heroButtonPrimary">Explore Our Work</a>
+                <a href="https://wa.me/918059807552?text=Hello%20RBM%20Traders,%20I%20want%20to%20explore%20your%20products%20and%20services." 
+                   class="btn whatsapp-link" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   data-i18n="heroButtonPrimary">Chat on WhatsApp</a>
                 <a href="#quote" class="btn btn-secondary" data-i18n="heroButtonSecondary">Get a Quote</a>
             </div>
         </div>
@@ -145,7 +161,14 @@
 
     <section class="cta reveal" id="quote">
         <p data-i18n="ctaText">Looking for dependable solutions? Get a personalized quote today and secure your supply with RBM Traders.</p>
-        <a href="#contact" data-i18n="ctaButton">Request a Quote</a>
+        <div class="cta-buttons">
+            <a href="https://wa.me/910589807552?text=Hello%20RBM%20Traders,%20I%20want%20to%20request%20a%20quote%20for%20my%20project." 
+               class="btn whatsapp-link" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               data-i18n="ctaButtonWhatsApp">WhatsApp Quote</a>
+            <a href="#contact" class="btn btn-secondary" data-i18n="ctaButton">Request a Quote</a>
+        </div>
     </section>
 
     <section class="section contact-section reveal" id="contact">
@@ -159,10 +182,16 @@
                 <h3 data-i18n="contactCard1Title">Call Us</h3>
                 <p data-i18n="contactCard1Text">Speak directly with our team for urgent requirements.</p>
             </a>
-            <a class="contact-card" href="rbmtraders2002@gmail.com">
+            <a class="contact-card" href="mailto:rbmtraders2002@gmail.com">
                 <i class="fas fa-envelope-open-text"></i>
                 <h3 data-i18n="contactCard2Title">Email Us</h3>
                 <p data-i18n="contactCard2Text">Share your requirements and receive a tailored response.</p>
+            </a>
+            <a class="contact-card whatsapp-contact" href="https://wa.me/918278940200?text=Hello%20RBM%20Traders,%20I%20need%20help%20with%20my%20inquiry." 
+               target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-whatsapp"></i>
+                <h3 data-i18n="contactCard4Title">WhatsApp</h3>
+                <p data-i18n="contactCard4Text">Chat instantly with our team for quick responses.</p>
             </a>
             <a class="contact-card" href="https://maps.app.goo.gl/C1o8YdZam9SvYt7T8?g_st=awb" target="_blank" rel="noreferrer">
                 <i class="fas fa-location-crosshairs"></i>
@@ -194,7 +223,7 @@ const translations = {
         heroEyebrow: "Dependable Trading Partner",
         heroTitle: "Strength. Reliability. Long-Term Trust.",
         heroText: "RBM Traders stands as a dependable partner for businesses seeking consistency and quality.<br>We combine industry experience with disciplined execution to ensure every delivery meets expectations.<br>Our focus is simple: build lasting relationships through reliability, transparency, and performance.",
-        heroButtonPrimary: "Explore Our Work",
+        heroButtonPrimary: "Chat on WhatsApp",
         heroButtonSecondary: "Get a Quote",
         aboutTag: "Who We Are",
         aboutHeading: "Built on practical expertise and long-term business values.",
@@ -242,7 +271,7 @@ const translations = {
         heroEyebrow: "भरोसेमंद ट्रेडिंग पार्टनर",
         heroTitle: "मजबूती. भरोसा. लंबे समय का साथ.",
         heroText: "आरबीएम ट्रेडर्स उन व्यवसायों का भरोसेमंद साथी है जो निरंतर गुणवत्ता और स्थिर सप्लाई चाहते हैं।<br>हम अपने अनुभव और अनुशासित कार्यप्रणाली से हर डिलीवरी को आपकी अपेक्षाओं के अनुसार पूरा करते हैं।<br>हमारा लक्ष्य सरल है: भरोसे, पारदर्शिता और बेहतर प्रदर्शन के साथ लंबे रिश्ते बनाना।",
-        heroButtonPrimary: "हमारा काम देखें",
+        heroButtonPrimary: "व्हाट्सएप पर चैट करें",
         heroButtonSecondary: "कोटेशन लें",
         aboutTag: "हम कौन हैं",
         aboutHeading: "व्यावहारिक विशेषज्ञता और लंबे समय के व्यावसायिक मूल्यों पर आधारित।",
@@ -265,14 +294,17 @@ const translations = {
         highlight3Text: "हम केवल एक लेन-देन नहीं, बल्कि बार-बार बनने वाला भरोसा बनाना चाहते हैं।",
         ctaText: "भरोसेमंद समाधान चाहिए? आज ही अपना पर्सनलाइज्ड कोटेशन लें और आरबीएम ट्रेडर्स के साथ अपनी सप्लाई सुरक्षित करें।",
         ctaButton: "कोटेशन मांगें",
+        ctaButtonWhatsApp: "व्हाट्सएप कोटेशन",
         contactTag: "संपर्क",
         contactHeading: "आइए जुड़ें और आपकी सप्लाई जरूरतों पर बात करें।",
         contactCard1Title: "कॉल करें",
-        contactCard1Text: "जरूरी जरूरतों के लिए हमारी टीम से सीधे बात करें।",
+        contactCard1Text: "तात्काल जरूरतों के लिए सीधे हमारी टीम से बात करें।",
         contactCard2Title: "ईमेल करें",
-        contactCard2Text: "अपनी जरूरत साझा करें और उपयुक्त जवाब प्राप्त करें।",
-        contactCard3Title: "लोकेशन देखें",
-        contactCard3Text: "हमारी लोकेशन देखें और आसानी से विजिट प्लान करें।",
+        contactCard2Text: "अपनी जरूरतें साझा करें और व्यक्तिगत प्रतिक्रिया पाएं।",
+        contactCard3Title: "लोकेशन पर जाएं",
+        contactCard3Text: "हमारा लोकेशन ढूंढें और आसानी से अपनी यात्रा की योजना बनाएं।",
+        contactCard4Title: "व्हाट्सएप",
+        contactCard4Text: "तेज जवाब के लिए तुरंत हमारी टीम से चैट करें।",
         footerText: "&copy; 2026 आरबीएम ट्रेडर्स • भरोसे और उत्कृष्टता के साथ निर्मित"
     }
 };
@@ -377,6 +409,7 @@ window.addEventListener("load", () => {
         applyTranslations(savedLanguage);
         closeLanguageChooser();
     } else {
+        // Always show language selection for new users
         openLanguageChooser();
     }
 
