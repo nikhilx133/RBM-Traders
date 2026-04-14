@@ -468,12 +468,42 @@ main{padding-top:76px;}
     .logo strong{font-size:16px;}
     .logo img{width:36px;height:36px;}
     .language-trigger{padding:9px 12px;font-size:13px;}
-    .hero{padding:96px 18px 70px;}
+    .hero{
+        padding:96px 18px 70px;
+        min-height:85vh;
+        background-attachment: scroll;
+    }
     .hero h1{font-size:36px;}
     .hero p{font-size:15px;line-height:1.75;}
+    .hero::before{
+        background:url("p1.jpeg") center/cover no-repeat;
+        background-position: center 25%;
+        background-size: cover;
+        background-attachment: scroll;
+        transform: scale(1.05);
+    }
+    .hero::after{
+        background:linear-gradient(180deg,rgba(15,23,42,.75),rgba(15,23,42,.90));
+    }
     .section{padding:70px 18px;}
     .section-heading h2{font-size:30px;}
     .cta{margin:0 18px 18px;padding:44px 18px;border-radius:24px;}
     .modal-content{padding:28px 22px;}
     .modal-content h2{font-size:26px;}
+}
+
+@media (max-width: 480px){
+    .hero{
+        min-height:80vh;
+        padding:80px 16px 60px;
+    }
+    .hero h1{font-size:32px;line-height:1.2;}
+    .hero p{font-size:14px;}
+    .hero::before{
+        background-position: center 20%;
+        transform: scale(1.02);
+    }
+    .hero::after{
+        background:linear-gradient(180deg,rgba(15,23,42,.78),rgba(15,23,42,.92));
+    }
 }
