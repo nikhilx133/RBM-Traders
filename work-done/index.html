@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Work - Readymade Walls</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <section class="work-header">
+        <div class="header-content">
+            <h1>Our Completed Projects</h1>
+            <p>Premium Readymade Wall Solutions</p>
+            <span class="header-tagline">Excellence Delivered Across Every Project</span>
+        </div>
+        <div class="header-overlay"></div>
+    </section>
+
+    <!-- Intro Section -->
+    <section class="intro-section">
+        <div class="container">
+            <h2>Transforming Spaces With Quality</h2>
+            <p>Explore our comprehensive portfolio of completed projects, each showcasing the consistent quality and professional craftsmanship we deliver across all our readymade wall installations.</p>
+            <div class="intro-details">
+                <div class="detail-box">
+                    <h4>Premium Quality</h4>
+                    <p>Every project is constructed with precision-engineered materials and professional craftsmanship to ensure durability and aesthetic appeal.</p>
+                </div>
+                <div class="detail-box">
+                    <h4>Reliable Solutions</h4>
+                    <p>We provide dependable supply, assured quality, and professional support for all our clients across every project.</p>
+                </div>
+                <div class="detail-box">
+                    <h4>Expert Execution</h4>
+                    <p>Our experienced team delivers consistent results by maintaining strict standards and honoring all project commitments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section Empty -->
+    <section class="filter-section"></section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="section-tag">Portfolio</div>
+        <h2 class="section-title">Quality Projects Delivered Consistently</h2>
+        <p class="section-description">Browse through our collection of successfully completed readymade wall projects, each demonstrating our commitment to quality craftsmanship and professional execution</p>
+        <div class="container">
+            <div class="gallery-grid">
+                <!-- Single Project Card -->
+                <div class="gallery-item" onclick="openProjectModal()">
+                    <div class="gallery-card project-card">
+                        <img src="pictures/front.jpg" alt="Completed Project">
+                        <div class="gallery-overlay overlay-project">
+                            <h3>Naichana Project</h3>
+                            <p>View project details and images</p>
+                            <span class="view-btn">View Project</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="project-modal">
+        <div class="modal-content-project">
+            <span class="close-modal" onclick="closeProjectModal()">&times;</span>
+            <div class="modal-header-project">
+                <h2>Project Details</h2>
+            </div>
+            <div class="modal-gallery">
+                <div class="modal-image-container">
+                    <img id="modalImage" src="pictures/front.jpg" alt="Project Image">
+                </div>
+                <div class="modal-thumbs">
+                    <img src="pictures/front.jpg" alt="Thumb" onclick="changeImage('pictures/front.jpg')" class="thumb-active">
+                    <img src="pictures/wall.jpg" alt="Thumb" onclick="changeImage('pictures/wall.jpg')">
+                    <img src="pictures/gate.jpg" alt="Thumb" onclick="changeImage('pictures/gate.jpg')">
+                    <img src="pictures/drain.jpg" alt="Thumb" onclick="changeImage('pictures/drain.jpg')">
+                    <img src="pictures/cleanup-time.jpg" alt="Thumb" onclick="changeImage('pictures/cleanup-time.jpg')">
+                    <img src="pictures/work-in-progress.jpg" alt="Thumb" onclick="changeImage('pictures/work-in-progress.jpg')">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3 class="stat-number">150+</h3>
+                    <p class="stat-label">Projects Completed</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="stat-number">1000+</h3>
+                    <p class="stat-label">Happy Clients</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="stat-number">15+</h3>
+                    <p class="stat-label">Years Experience</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="stat-number">100%</h3>
+                    <p class="stat-label">Satisfaction Rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Transform Your Space?</h2>
+            <p>Get in touch with our team for a free consultation and discover how we can bring your vision to life</p>
+            <a href="../index.html" class="cta-btn">Contact Us Today</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Readymade Walls. All rights reserved. | Excellence in Construction</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

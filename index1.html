@@ -81,7 +81,6 @@
 
 <main id="top">
     <section class="hero">
-        <img src="p1.jpeg" alt="" class="hero-bg">
         <div class="hero-text">
             <p class="eyebrow" data-i18n="heroEyebrow">Dependable Trading Partner</p>
             <h1 data-i18n="heroTitle"> Strength. Reliability. आपकी भूमि सुरक्षा के लिए भरोसेमंद.</h1>
@@ -333,8 +332,8 @@ function closeMenu() {
 }
 
 function updateLanguageToggleButtons(language) {
-    const switchLabel = language === "en" ? "Hindi" : "English";
-    const sideLabel = language === "en" ? "Hindi" : "English";
+    const switchLabel = language === "en" ? "Switch to Hindi" : "Switch to English";
+    const sideLabel = language === "en" ? "हिंदी" : "English";
 
     if (languageSwitch) {
         const switchText = languageSwitch.querySelector(".switch-text");
@@ -438,10 +437,6 @@ animatedLinks.forEach((link) => {
 window.addEventListener("load", () => {
     const savedLanguage = localStorage.getItem("preferredLanguage") || "en";
     setLanguage(savedLanguage);
-
-    if (pageTransitionOverlay) {
-        pageTransitionOverlay.classList.remove("active");
-    }
 
     setTimeout(() => {
         loader.classList.add("hidden");
