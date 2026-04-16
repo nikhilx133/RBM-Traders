@@ -196,7 +196,7 @@ body {
     max-width: 450px;
 }
 
-.gallery-card.project-card {
+.gallery-card.photo-card {
     cursor: pointer;
 }
 
@@ -212,7 +212,7 @@ body {
 }
 
 .gallery-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-10px) scale(1.02);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
 }
 
@@ -227,55 +227,65 @@ body {
     transform: scale(1.1);
 }
 
-.gallery-overlay {
-    position: absolute;
-    top: 0;
+/* Lightbox Modal Styles */
+.lightbox-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    padding: 0;
     left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(15, 23, 42, 0.85);
+    background-color: rgba(0, 0, 0, 0.95);
+    animation: fadeIn 0.3s ease-out;
+}
+
+.lightbox-modal.show {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.lightbox-image {
+    max-width: 90%;
+    max-height: 90vh;
+    object-fit: contain;
+    animation: zoomIn 0.4s ease-out;
+}
+
+.lightbox-close {
+    position: fixed;
+    top: 20px;
+    right: 35px;
     color: white;
-    text-align: center;
-    opacity: 0;
-    transition: opacity 0.4s ease, background 0.4s ease;
-    padding: 20px;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10000;
+    transition: transform 0.2s ease;
 }
 
-.gallery-card:hover .gallery-overlay {
-    opacity: 1;
-    background: rgba(37, 99, 235, 0.92);
+.lightbox-close:hover,
+.lightbox-close:focus {
+    transform: scale(1.2);
+    color: #bbb;
 }
 
-.gallery-overlay h3 {
-    font-size: 22px;
-    margin-bottom: 10px;
-    font-weight: 700;
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
-.gallery-overlay p {
-    font-size: 14px;
-    font-weight: 300;
-    margin-bottom: 15px;
-}
-
-.overlay-project .view-btn {
-    display: inline-block;
-    padding: 10px 25px;
-    background: white;
-    color: var(--primary);
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 14px;
-    transition: all 0.3s ease;
-}
-
-.overlay-project:hover .view-btn {
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+/* Old project modal - hidden */
+.project-modal {
+    display: none;
 }
 
 /* Stats Section */

@@ -1,40 +1,30 @@
-// Project Modal Functions
-function openProjectModal() {
-    document.getElementById('projectModal').classList.add('show');
+// Lightbox Modal Functions
+function openLightbox(imageSrc) {
+    const modal = document.getElementById('lightboxModal');
+    const image = document.getElementById('lightboxImage');
+    image.src = imageSrc;
+    modal.classList.add('show');
     document.body.style.overflow = 'hidden';
 }
 
-function closeProjectModal() {
-    document.getElementById('projectModal').classList.remove('show');
+function closeLightbox() {
+    const modal = document.getElementById('lightboxModal');
+    modal.classList.remove('show');
     document.body.style.overflow = 'auto';
 }
 
-// Change modal image and update active thumbnail
-function changeImage(src) {
-    document.getElementById('modalImage').src = src;
-    
-    // Update active thumbnail
-    const thumbs = document.querySelectorAll('.modal-thumbs img');
-    thumbs.forEach(thumb => {
-        thumb.classList.remove('thumb-active');
-        if (thumb.src.includes(src)) {
-            thumb.classList.add('thumb-active');
-        }
-    });
-}
-
-// Close modal when clicking outside the content
+// Close lightbox when clicking outside the image
 window.addEventListener('click', (e) => {
-    const modal = document.getElementById('projectModal');
+    const modal = document.getElementById('lightboxModal');
     if (e.target === modal) {
-        closeProjectModal();
+        closeLightbox();
     }
 });
 
-// Close modal on Escape key
+// Close lightbox on Escape key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        closeProjectModal();
+        closeLightbox();
     }
 });
 
