@@ -105,8 +105,8 @@
             padding-top: 30px;
             border-top: 2px solid #e0e0e0;
             display: none;
-            transform: translateY(-100%);
-            transition: transform 1s ease;
+            opacity: 0;
+            transition: opacity 1s ease;
         }
 
         .result-item {
@@ -117,8 +117,6 @@
             background: #f5f5f5;
             border-radius: 5px;
             margin-bottom: 12px;
-            opacity: 0;
-            transition: opacity 0.5s ease;
         }
 
         .result-label {
@@ -243,7 +241,7 @@
 
         function showError(message) {
             const resultsDiv = document.getElementById('results');
-            resultsDiv.style.transform = 'translateY(-100%)';
+            resultsDiv.style.opacity = '0';
             setTimeout(() => resultsDiv.style.display = 'none', 1000);
             document.getElementById('error').textContent = message;
             document.getElementById('error').style.display = 'block';
@@ -267,12 +265,7 @@
             const resultsDiv = document.getElementById('results');
             resultsDiv.style.display = 'block';
             setTimeout(() => {
-                resultsDiv.style.transform = 'translateY(0)';
-                // After dropdown completes, fade in items
-                setTimeout(() => {
-                    const items = resultsContent.querySelectorAll('.result-item');
-                    items.forEach(item => item.style.opacity = '1');
-                }, 1000);
+                resultsDiv.style.opacity = '1';
             }, 10);
             document.getElementById('error').style.display = 'none';
         }
