@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instant Quotation - RBM Traders</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="bg-shape"></div>
+        <div class="bg-shape"></div>
+        <div class="bg-shape"></div>
+        <div class="bg-shape"></div>
+    </div>
+
+    <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back</a>
+    
+    <div class="header">
+        <h1>Instant Quotation</h1>
+        <p>Get instant quotes for your construction needs</p>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>Wall Calculator</h2>
+            <div class="calculator">
+                <h1>🧮 Wall Calculator</h1>
+                <p class="subtitle">Calculate cemented wall cost</p>
+
+                <div class="input-row">
+                    <div class="form-group">
+                        <label for="length">Wall Length (ft)</label>
+                        <input type="number" id="length" placeholder="0" min="0" step="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="height">Wall Height (ft)</label>
+                        <input type="number" id="height" placeholder="0" min="0" step="1">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="totalArea">Total Area (sq ft)</label>
+                    <input type="number" id="totalArea" placeholder="0" min="0" step="1">
+                </div>
+                <div class="form-group">
+                    <label for="village">Select Village</label>
+                    <select id="village" onchange="updatePrice()">
+                        <option value="">Select a village</option>
+                        <option value="Kalrawas">Kalrawas</option>
+                        <option value="Harchandpur">Harchandpur</option>
+                        <option value="Bawal">Bawal</option>
+                        <option value="Jaliawas">Jaliawas</option>
+                        <option value="Banipur">Banipur</option>
+                        <option value="Chirhara">Chirhara</option>
+                        <option value="Saban">Saban</option>
+                        <option value="Naichana">Naichana</option>
+                        <option value="Suthana">Suthana</option>
+                        <option value="Mohammadpur">Mohammadpur</option>
+                        <option value="other">Other Village</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Price per sq ft</label>
+                    <span id="priceDisplay">₹70</span>
+                    <p class="note">*Price varies according to the distance from us.</p>
+                </div>
+                <button onclick="calculate()">Calculate Cost</button>
+
+                <div id="error" class="error"></div>
+                <div id="results" class="results">
+                    <div id="resultsContent"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section contact-section">
+            <h2>Contact for More Quotes</h2>
+            <p>Need quotes for other materials or services? Choose your preferred way to connect with us:</p>
+            <div class="contact-options">
+                <a href="https://wa.me/910589807552?text=Hello%20RBM%20Traders,%20I%20want%20to%20request%20a%20quote%20for%20my%20project.&lang=en"
+                   class="contact-option" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>WhatsApp</h3>
+                    <p>Instant chat for quick quotes</p>
+                </a>
+                <a href="tel:+918059807552" class="contact-option">
+                    <i class="fas fa-phone"></i>
+                    <h3>Call Now</h3>
+                    <p>Speak directly with our team</p>
+                </a>
+                <a href="mailto:rbmtraders2002@gmail.com" class="contact-option">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email Us</h3>
+                    <p>Send detailed requirements</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced JavaScript for beautiful interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mouse movement parallax effect for background shapes
+            document.addEventListener('mousemove', function(e) {
+                const shapes = document.querySelectorAll('.bg-shape');
+                const mouseX = e.clientX / window.innerWidth;
+                const mouseY = e.clientY / window.innerHeight;
+
+                shapes.forEach((shape, index) => {
+                    const speed = (index + 1) * 0.5;
+                    const x = (mouseX - 0.5) * speed * 100;
+                    const y = (mouseY - 0.5) * speed * 100;
+                    shape.style.transform = `translate(${x}px, ${y}px) rotate(${x * 0.1}deg)`;
+                });
+            });
+
+            // Add click ripple effect to buttons
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(255, 255, 255, 0.6)';
+                    ripple.style.transform = 'scale(0)';
+                    ripple.style.animation = 'ripple 0.6s linear';
+                    ripple.style.left = (e.offsetX - 10) + 'px';
+                    ripple.style.top = (e.offsetY - 10) + 'px';
+                    ripple.style.width = '20px';
+                    ripple.style.height = '20px';
+
+                    this.appendChild(ripple);
+
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+
+            // Enhanced contact options interaction
+            const contactOptions = document.querySelectorAll('.contact-option');
+            contactOptions.forEach((option, index) => {
+                // Add magnetic effect on hover
+                option.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+
+                    this.style.transform = `translateY(-10px) scale(1.02) rotateX(${y * 0.01}deg) rotateY(${x * 0.01}deg)`;
+                });
+
+                option.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+
+                // Add click feedback
+                option.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+
+            // Add CSS for ripple animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes ripple {
+                    to {
+                        transform: scale(4);
+                        opacity: 0;
+                    }
+                }
+                button {
+                    position: relative;
+                    overflow: hidden;
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Dynamic color changes based on time
+            function updateDynamicColors() {
+                const hour = new Date().getHours();
+                const body = document.body;
+
+                if (hour >= 6 && hour < 12) {
+                    // Morning - warm colors
+                    body.style.setProperty('--dynamic-color-1', '#ff9a56');
+                    body.style.setProperty('--dynamic-color-2', '#ff6b6b');
+                } else if (hour >= 12 && hour < 18) {
+                    // Afternoon - vibrant colors
+                    body.style.setProperty('--dynamic-color-1', '#667eea');
+                    body.style.setProperty('--dynamic-color-2', '#764ba2');
+                } else {
+                    // Evening/Night - cool colors
+                    body.style.setProperty('--dynamic-color-1', '#2c3e50');
+                    body.style.setProperty('--dynamic-color-2', '#34495e');
+                }
+            }
+
+            updateDynamicColors();
+            setInterval(updateDynamicColors, 60000); // Update every minute
+
+            // Add scroll-triggered animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all animated elements
+            document.querySelectorAll('.section, .result-item').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Add loading animation for results
+            const originalShowResults = window.showResults;
+            window.showResults = function(data) {
+                // Add confetti effect for successful calculation
+                createConfetti();
+
+                // Call original function
+                if (originalShowResults) {
+                    originalShowResults(data);
+                }
+            };
+
+            function createConfetti() {
+                for (let i = 0; i < 50; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'fixed';
+                    confetti.style.width = '10px';
+                    confetti.style.height = '10px';
+                    confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-10px';
+                    confetti.style.zIndex = '9999';
+                    confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+
+                    document.body.appendChild(confetti);
+
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5000);
+                }
+            }
+
+            // Add CSS for confetti animation
+            const confettiStyle = document.createElement('style');
+            confettiStyle.textContent = `
+                @keyframes fall {
+                    to {
+                        transform: translateY(100vh) rotate(720deg);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(confettiStyle);
+        });
+
+        // Existing calculator functions
+        const villages = ['Kalrawas', 'Harchandpur', 'Bawal', 'Jaliawas', 'Banipur', 'Chirhara', 'Saban', 'Naichana', 'Suthana', 'Mohammadpur'];
+
+        function updatePrice() {
+            const village = document.getElementById('village').value;
+            const price = villages.includes(village) ? 70 : 75;
+            document.getElementById('priceDisplay').textContent = '₹' + price;
+        }
+
+        function calculate() {
+            const button = document.querySelector('.calculator button');
+            button.disabled = true;
+            button.textContent = 'Calculating...';
+
+            const length = parseFloat(document.getElementById('length').value || '0');
+            const height = parseFloat(document.getElementById('height').value || '0');
+            const totalArea = parseFloat(document.getElementById('totalArea').value || '0');
+            const village = document.getElementById('village').value;
+            const pricePerSqFt = villages.includes(village) ? 70 : 75;
+
+            if (length < 1 || height < 1 || totalArea < 1) {
+                showError('Please enter heights, lengths, and area greater than 0');
+                button.disabled = false;
+                button.textContent = 'Calculate Cost';
+                return;
+            }
+
+            if (!village) {
+                showError('Please select a village');
+                button.disabled = false;
+                button.textContent = 'Calculate Cost';
+                return;
+            }
+            setTimeout(() => {
+                const wallArea = length * height;
+                const totalCost = (totalArea * pricePerSqFt).toFixed(2);
+
+                showResults({
+                    'Wall Area (from dimensions)': wallArea.toFixed(2) + ' sq ft',
+                    'Total Area for Walls': totalArea + ' sq ft',
+                    'Price per sq ft': '₹' + pricePerSqFt,
+                    'Total Cost': '₹' + totalCost
+                });
+
+                button.disabled = false;
+                button.textContent = 'Calculate Cost';
+            }, 2000);
+        }
+
+        function showError(message) {
+            const resultsDiv = document.querySelector('.calculator .results');
+            resultsDiv.style.opacity = '0';
+            setTimeout(() => resultsDiv.style.display = 'none', 1000);
+            document.querySelector('.calculator .error').textContent = message;
+            document.querySelector('.calculator .error').style.display = 'block';
+        }
+
+        function showResults(data) {
+            const resultsContent = document.getElementById('resultsContent');
+            resultsContent.innerHTML = '';
+
+            for (const label in data) {
+                const value = data[label];
+                const resultItem = document.createElement('div');
+                resultItem.className = 'result-item';
+                resultItem.innerHTML = `
+                    <span class="result-label">${label}</span>
+                    <span class="result-value">${value}</span>
+                `;
+                resultsContent.appendChild(resultItem);
+            }
+
+            const resultsDiv = document.querySelector('.calculator .results');
+            resultsDiv.style.display = 'block';
+            setTimeout(() => {
+                resultsDiv.style.opacity = '1';
+            }, 10);
+            document.querySelector('.calculator .error').style.display = 'none';
+        }
+
+        document.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                calculate();
+            }
+        });
+    </script>
+</body>
+</html>
