@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wall Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .input-row .form-group {
+            margin-bottom: 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .results {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            display: none;
+            transform: translateY(-100%);
+            transition: transform 1s ease;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 5px;
+            margin-bottom: 12px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .result-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .result-value {
+            color: #667eea;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .error {
+            color: #e74c3c;
+            font-size: 14px;
+            display: none;
+            margin-top: 20px;
+            padding: 12px;
+            background: #ffe0e0;
+            border-radius: 5px;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .note {
+            color: #888;
+            font-size: 12px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧮 Wall Calculator</h1>
+        <p class="subtitle">Calculate cemented wall cost</p>
+
+        <div class="input-row">
+            <div class="form-group">
+                <label for="length">Wall Length (ft)</label>
+                <input type="number" id="length" placeholder="0" min="0" step="1">
+            </div>
+            <div class="form-group">
+                <label for="height">Wall Height (ft)</label>
+                <input type="number" id="height" placeholder="0" min="0" step="1">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="totalArea">Total Area (sq ft)</label>
+            <input type="number" id="totalArea" placeholder="0" min="0" step="1">
+        </div>
+        <div class="form-group">            <label for="village">Select Village</label>
+            <select id="village" onchange="updatePrice()">
+                <option value="">Select a village</option>
+                <option value="Kalrawas">Kalrawas</option>
+                <option value="Harchandpur">Harchandpur</option>
+                <option value="Bawal">Bawal</option>
+                <option value="Jaliawas">Jaliawas</option>
+                <option value="Banipur">Banipur</option>
+                <option value="Chirhara">Chirhara</option>
+                <option value="Saban">Saban</option>
+                <option value="Naichana">Naichana</option>
+                <option value="Suthana">Suthana</option>
+                <option value="Mohammadpur">Mohammadpur</option>
+                <option value="other">Other Village</option>
+            </select>
+        </div>
+        <div class="form-group">            <label>Price per sq ft</label>
+            <span id="priceDisplay">₹70</span>
+            <p class="note">*Price varies according to the distance from us.</p>
+        </div>
+        <button onclick="calculate()">Calculate Cost</button>
+
+        <div id="error" class="error"></div>
+        <div id="results" class="results">
+            <div id="resultsContent"></div>
+        </div>
+    </div>
+
+    <script>
+        const villages = ['Kalrawas', 'Harchandpur', 'Bawal', 'Jaliawas', 'Banipur', 'Chirhara', 'Saban', 'Naichana', 'Suthana', 'Mohammadpur'];
+
+        function updatePrice() {
+            const village = document.getElementById('village').value;
+            const price = villages.includes(village) ? 70 : 75;
+            document.getElementById('priceDisplay').textContent = '₹' + price;
+        }
+
+        function calculate() {
+            const button = document.querySelector('button');
+            button.disabled = true;
+            button.textContent = 'Calculating...';
+
+            const length = parseFloat(document.getElementById('length').value || '0');
+            const height = parseFloat(document.getElementById('height').value || '0');
+            const totalArea = parseFloat(document.getElementById('totalArea').value || '0');
+            const village = document.getElementById('village').value;
+            const pricePerSqFt = villages.includes(village) ? 70 : 75;
+
+            if (length < 0 || height < 0 || totalArea < 0 || !village) {
+                showError('Please enter valid numbers and select a village');
+                button.disabled = false;
+                button.textContent = 'Calculate Cost';
+                return;
+            }
+
+            setTimeout(() => {
+                const wallArea = length * height;
+                const totalCost = (totalArea * pricePerSqFt).toFixed(2);
+
+                showResults({
+                    'Wall Area (from dimensions)': wallArea.toFixed(2) + ' sq ft',
+                    'Total Area for Walls': totalArea + ' sq ft',
+                    'Price per sq ft': '₹' + pricePerSqFt,
+                    'Total Cost': '₹' + totalCost
+                });
+
+                button.disabled = false;
+                button.textContent = 'Calculate Cost';
+            }, 2000);
+        }
+
+        function showError(message) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.style.transform = 'translateY(-100%)';
+            setTimeout(() => resultsDiv.style.display = 'none', 1000);
+            document.getElementById('error').textContent = message;
+            document.getElementById('error').style.display = 'block';
+        }
+
+        function showResults(data) {
+            const resultsContent = document.getElementById('resultsContent');
+            resultsContent.innerHTML = '';
+
+            for (const label in data) {
+                const value = data[label];
+                const resultItem = document.createElement('div');
+                resultItem.className = 'result-item';
+                resultItem.innerHTML = `
+                    <span class="result-label">${label}</span>
+                    <span class="result-value">${value}</span>
+                `;
+                resultsContent.appendChild(resultItem);
+            }
+
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.style.display = 'block';
+            setTimeout(() => {
+                resultsDiv.style.transform = 'translateY(0)';
+                // After dropdown completes, fade in items
+                setTimeout(() => {
+                    const items = resultsContent.querySelectorAll('.result-item');
+                    items.forEach(item => item.style.opacity = '1');
+                }, 1000);
+            }, 10);
+            document.getElementById('error').style.display = 'none';
+        }
+
+        document.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                calculate();
+            }
+        });
+    </script>
+</body>
+</html>
