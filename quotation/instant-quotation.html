@@ -31,7 +31,7 @@
             <h2>Wall Calculator</h2>
             <div class="calculator">
                 <h1>🧮 Wall Calculator</h1>
-                <p class="subtitle">Calculate cemented wall cost</p>
+                <p class="subtitle">Calculate wall construction cost</p>
 
                 <div class="input-row">
                     <div class="form-group">
@@ -51,23 +51,43 @@
                     <label for="village">Select Village</label>
                     <select id="village" onchange="updatePrice()">
                         <option value="">Select a village</option>
-                        <option value="Kalrawas">Kalrawas</option>
-                        <option value="Harchandpur">Harchandpur</option>
-                        <option value="Bawal">Bawal</option>
-                        <option value="Jaliawas">Jaliawas</option>
-                        <option value="Banipur">Banipur</option>
-                        <option value="Chirhara">Chirhara</option>
-                        <option value="Saban">Saban</option>
-                        <option value="Naichana">Naichana</option>
-                        <option value="Suthana">Suthana</option>
-                        <option value="Mohammadpur">Mohammadpur</option>
-                        <option value="other">Other Village</option>
+                        <option value="Kalrawas" data-distance="5">Kalrawas (5 km)</option>
+                        <option value="Harchandpur" data-distance="8">Harchandpur (8 km)</option>
+                        <option value="Bawal" data-distance="10">Bawal (10 km)</option>
+                        <option value="Jaliawas" data-distance="12">Jaliawas (12 km)</option>
+                        <option value="Banipur" data-distance="14">Banipur (14 km)</option>
+                        <option value="Chirhara" data-distance="16">Chirhara (16 km)</option>
+                        <option value="Saban" data-distance="18">Saban (18 km)</option>
+                        <option value="Naichana" data-distance="20">Naichana (20 km)</option>
+                        <option value="Suthana" data-distance="22">Suthana (22 km)</option>
+                        <option value="Mohammadpur" data-distance="25">Mohammadpur (25 km)</option>
+                        <option value="Nahan" data-distance="28">Nahan (28 km)</option>
+                        <option value="PaontaSahib" data-distance="32">Paonta Sahib (32 km)</option>
+                        <option value="KalaAmb" data-distance="35">Kala Amb (35 km)</option>
+                        <option value="Yamunanagar" data-distance="38">Yamunanagar (38 km)</option>
+                        <option value="Jagadhri" data-distance="40">Jagadhri (40 km)</option>
+                        <option value="Saharanpur" data-distance="45">Saharanpur (45 km)</option>
+                        <option value="Dehradun" data-distance="48">Dehradun (48 km)</option>
+                        <option value="Haridwar" data-distance="52">Haridwar (52 km)</option>
+                        <option value="Roorkee" data-distance="55">Roorkee (55 km)</option>
+                        <option value="Muzaffarnagar" data-distance="58">Muzaffarnagar (58 km)</option>
+                        <option value="other60" data-distance="60">Other Location (60 km)</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Price per sq ft</label>
-                    <span id="priceDisplay">₹70</span>
-                    <p class="note">*Price varies according to the distance from us.</p>
+                    <label>Delivery Charges</label>
+                    <span id="deliveryChargesDisplay">₹0</span>
+                    <p class="note">*Free delivery up to 15km, ₹10 per km after 15km.</p>
+                </div>
+                <div class="form-group">
+                    <label>Material Cost per sq ft</label>
+                    <span id="materialPriceDisplay">₹70</span>
+                    <p class="note">*Material price varies according to the distance from us.</p>
+                </div>
+                <div class="form-group">
+                    <label>Labor Cost per sq ft</label>
+                    <span id="laborPriceDisplay">₹80</span>
+                    <p class="note">*Fixed labor rate for all locations.</p>
                 </div>
                 <button onclick="calculate()">Calculate Cost</button>
 
@@ -270,13 +290,32 @@
             document.head.appendChild(confettiStyle);
         });
 
-        // Existing calculator functions
-        const villages = ['Kalrawas', 'Harchandpur', 'Bawal', 'Jaliawas', 'Banipur', 'Chirhara', 'Saban', 'Naichana', 'Suthana', 'Mohammadpur'];
+        // Simplified calculator functions
+        const villages = ['Kalrawas', 'Harchandpur', 'Bawal', 'Jaliawas', 'Banipur', 'Chirhara', 'Saban', 'Naichana', 'Suthana', 'Mohammadpur', 'Nahan', 'PaontaSahib', 'KalaAmb', 'Yamunanagar', 'Jagadhri', 'Saharanpur', 'Dehradun', 'Haridwar', 'Roorkee', 'Muzaffarnagar'];
+        const FIXED_LABOR_COST = 80; // Fixed labor cost per sq ft
+        const DELIVERY_CHARGE_PER_KM = 10; // ₹10 per km after 15km
+        const FREE_DELIVERY_KM = 15; // Free delivery up to 15km
+
+        function calculateDeliveryCharges(distance) {
+            if (distance <= FREE_DELIVERY_KM) {
+                return 0; // Free delivery up to 15km
+            } else {
+                return (distance - FREE_DELIVERY_KM) * DELIVERY_CHARGE_PER_KM; // ₹10 per km after 15km
+            }
+        }
 
         function updatePrice() {
-            const village = document.getElementById('village').value;
-            const price = villages.includes(village) ? 70 : 75;
-            document.getElementById('priceDisplay').textContent = '₹' + price;
+            const villageSelect = document.getElementById('village');
+            const village = villageSelect.value;
+            const selectedOption = villageSelect.options[villageSelect.selectedIndex];
+            const distance = parseFloat(selectedOption.dataset.distance) || 0;
+            
+            const materialPrice = villages.includes(village) ? 70 : 75;
+            const deliveryCharges = calculateDeliveryCharges(distance);
+            
+            document.getElementById('materialPriceDisplay').textContent = '₹' + materialPrice;
+            document.getElementById('laborPriceDisplay').textContent = '₹' + FIXED_LABOR_COST;
+            document.getElementById('deliveryChargesDisplay').textContent = '₹' + deliveryCharges;
         }
 
         function calculate() {
@@ -288,7 +327,10 @@
             const height = parseFloat(document.getElementById('height').value || '0');
             const totalArea = parseFloat(document.getElementById('totalArea').value || '0');
             const village = document.getElementById('village').value;
-            const pricePerSqFt = villages.includes(village) ? 70 : 75;
+            const villageSelect = document.getElementById('village');
+            const selectedOption = villageSelect.options[villageSelect.selectedIndex];
+            const distance = parseFloat(selectedOption.dataset.distance) || 0;
+            const materialPricePerSqFt = villages.includes(village) ? 70 : 75;
 
             if (length < 1 || height < 1 || totalArea < 1) {
                 showError('Please enter heights, lengths, and area greater than 0');
@@ -305,12 +347,17 @@
             }
             setTimeout(() => {
                 const wallArea = length * height;
-                const totalCost = (totalArea * pricePerSqFt).toFixed(2);
+                const materialCost = totalArea * materialPricePerSqFt;
+                const laborCost = totalArea * FIXED_LABOR_COST;
+                const deliveryCharges = calculateDeliveryCharges(distance);
+                const totalCost = (materialCost + laborCost + deliveryCharges).toFixed(2);
 
                 showResults({
                     'Wall Area (from dimensions)': wallArea.toFixed(2) + ' sq ft',
                     'Total Area for Walls': totalArea + ' sq ft',
-                    'Price per sq ft': '₹' + pricePerSqFt,
+                    'Material Cost': '₹' + materialCost.toFixed(2),
+                    'Labor Cost': '₹' + laborCost.toFixed(2),
+                    'Delivery Charges': '₹' + deliveryCharges.toFixed(2),
                     'Total Cost': '₹' + totalCost
                 });
 
