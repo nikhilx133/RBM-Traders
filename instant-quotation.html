@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instant Quotation - RBM Traders</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="loader" id="loader" aria-hidden="true">
+    <h1>RBM Traders<br>Get instant quote...</h1>
+    <div class="loading-dots">
+        <span></span><span></span><span></span>
+    </div>
+</div>
+
+<div class="page-transition-overlay" id="pageTransitionOverlay"></div>
+
+<header class="navbar">
+    <div class="nav-left">
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sideMenu">
+            <span></span><span></span><span></span>
+        </button>
+        <a class="logo" href="index.html" aria-label="RBM Traders home">
+            <img src="logo.jpeg" alt="RBM Traders logo">
+            <strong data-i18n="brandName">RBM Traders</strong>
+        </a>
+    </div>
+    <nav class="desktop-nav" aria-label="Primary">
+        <a href="index.html" data-i18n="menuHome">Home</a>
+        <a href="products.html" data-i18n="menuProducts">Products</a>
+        <a href="gallery.html" data-i18n="menuGallery">Gallery</a>
+        <a href="work-done/index.html" data-i18n="menuProjects">Our Work</a>
+        <a href="contact.html" data-i18n="menuContact">Contact</a>
+        <a href="instant-quotation.html" class="active" data-i18n="menuQuotation">Quotation</a>
+        <a href="https://maps.app.goo.gl/kAdwDStSetLQuG2U9" target="_blank" rel="noreferrer" data-i18n="viewLocation">
+            <i class="fas fa-location-dot"></i> Location
+        </a>
+    </nav>
+</header>
+
+<aside class="side-menu" id="sideMenu" aria-label="Mobile menu">
+    <a href="index.html"><i class="fas fa-home"></i> <span data-i18n="menuHome">Home</span></a>
+    <a href="products.html"><i class="fas fa-box"></i> <span data-i18n="menuProducts">Products</span></a>
+    <a href="gallery.html"><i class="fas fa-images"></i> <span data-i18n="menuGallery">Gallery</span></a>
+    <a href="work-done/index.html"><i class="fas fa-hammer"></i> <span data-i18n="menuProjects">Our Work</span></a>
+    <a href="contact.html"><i class="fas fa-phone"></i> <span data-i18n="menuContact">Contact</span></a>
+    <a href="instant-quotation.html" class="active"><i class="fas fa-calculator"></i> <span data-i18n="menuQuotation">Quotation</span></a>
+    <a href="https://maps.app.goo.gl/kAdwDStSetLQuG2U9" target="_blank" rel="noreferrer">
+        <i class="fas fa-location-dot"></i> <span data-i18n="viewLocation">Location</span></a>
+</aside>
+
+<div class="overlay" id="overlay"></div>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/918059807552?text=Hello%20RBM%20Traders,%20I%20have%20calculated%20my%20quote.%20Let's%20discuss!" 
+   class="whatsapp-float" 
+   target="_blank" 
+   rel="noopener noreferrer"
+   aria-label="Chat with RBM Traders on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Animated Background -->
+<div class="bg-animation">
+    <div class="bg-shape"></div>
+    <div class="bg-shape"></div>
+    <div class="bg-shape"></div>
+    <div class="bg-shape"></div>
+</div>
+
+<main id="top">
+    <div class="header">
+        <h1>Instant Quotation</h1>
+        <p>Get instant quotes for your construction needs</p>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>Wall Calculator</h2>
+            <div class="calculator">
+                <h1>🧮 Wall Calculator</h1>
+                <p class="subtitle">Calculate cemented wall cost</p>
+
+                <div class="input-row">
+                    <div class="form-group">
+                        <label for="length">Wall Length (ft)</label>
+                        <input type="number" id="length" placeholder="0" min="0" step="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="height">Wall Height (ft)</label>
+                        <input type="number" id="height" placeholder="3" min="3" max="12" step="1">
+                        <small class="note">Height between 3 ft and 12 ft</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="totalArea">Total Area (sq ft)</label>
+                    <input type="number" id="totalArea" placeholder="0" min="0" step="1" onchange="updatePrice()">
+                </div>
+                <div class="form-group">
+                    <label for="village">Select Village</label>
+                    <select id="village" onchange="updatePrice()">
+                        <option value="">Select a village</option>
+                        <option value="Kalrawas">Kalrawas</option>
+                        <option value="Harchandpur">Harchandpur</option>
+                        <option value="Bawal">Bawal</option>
+                        <option value="Jaliawas">Jaliawas</option>
+                        <option value="Banipur">Banipur</option>
+                        <option value="Chirhara">Chirhara</option>
+                        <option value="Saban">Saban</option>
+                        <option value="Naichana">Naichana</option>
+                        <option value="Suthana">Suthana</option>
+                        <option value="Mohammadpur">Mohammadpur</option>
+                        <option value="other">Other Village</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Price per sq ft</label>
+                    <span id="priceDisplay">₹70</span>
+                    <p class="note">*Price varies according to the distance from us.</p>
+                </div>
+                <button type="button" onclick="calculate()">Calculate Cost</button>
+
+                <div id="error" class="error"></div>
+                <div id="results" class="results">
+                    <div id="resultsContent"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h2>Contact for More Quotes</h2>
+            <p>Need quotes for other materials or services? Choose your preferred way to connect with us:</p>
+            <div class="contact-options">
+                <a href="https://wa.me/918059807552?text=Hello%20RBM%20Traders,%20I%20want%20to%20request%20a%20quote%20for%20my%20project.&lang=en"
+                   class="contact-option" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>WhatsApp</h3>
+                    <p>Instant chat for quick quotes</p>
+                </a>
+                <a href="tel:+918059807552" class="contact-option">
+                    <i class="fas fa-phone"></i>
+                    <h3>Call Now</h3>
+                    <p>Speak directly with our team</p>
+                </a>
+                <a href="mailto:rbmtraders2002@gmail.com" class="contact-option">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email Us</h3>
+                    <p>Send detailed requirements</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer" data-i18n="footerText">
+    &copy; 2024 RBM Traders • Built with Trust &amp; Excellence
+</footer>
+
+<script src="script.js"></script>
+<script>
+// Instant quotation calculator logic
+const listedVillages = [
+    'Kalrawas','Harchandpur','Bawal','Jaliawas','Banipur','Chirhara','Saban','Naichana','Suthana','Mohammadpur'
+];
+
+function getPriceForVillage(v){
+    if (!v) return 75; // default to other
+    return listedVillages.includes(v) ? 70 : 75;
+}
+
+function updatePrice(){
+    const sel = document.getElementById('village');
+    const v = sel ? sel.value : '';
+    const price = getPriceForVillage(v);
+    const disp = document.getElementById('priceDisplay');
+    if (disp) disp.textContent = '₹' + price;
+}
+
+function formatRs(n){
+    try{
+        return '₹' + new Intl.NumberFormat('en-IN').format(Math.round(n));
+    }catch(e){
+        return '₹' + Math.round(n);
+    }
+}
+
+function calculate(){
+    const err = document.getElementById('error');
+    const results = document.getElementById('resultsContent');
+    const resultsWrapper = document.getElementById('results');
+    if (err) err.textContent = '';
+    if (results) results.innerHTML = '';
+    if (resultsWrapper) resultsWrapper.style.display = 'none';
+
+    const length = parseFloat(document.getElementById('length').value) || 0;
+    const height = parseFloat(document.getElementById('height').value) || 0;
+    const totalAreaInput = parseFloat(document.getElementById('totalArea').value) || 0;
+    const village = document.getElementById('village').value;
+
+    if (height > 0 && (height < 3 || height > 12)) {
+        if (err) err.textContent = 'Height must be between 3 ft and 12 ft.';
+        return;
+    }
+
+    let area = totalAreaInput > 0 ? totalAreaInput : (length > 0 && height > 0 ? (length * height) : 0);
+    if (area <= 0){
+        if (err) err.textContent = 'Please enter wall length and height, or enter total area.';
+        if (resultsWrapper) resultsWrapper.style.display = 'none';
+        return;
+    }
+
+    const price = getPriceForVillage(village);
+    const total = area * price;
+
+    const out = [];
+    out.push('<div class="result-item"><span class="result-label">Selected Village</span><span class="result-value">' + (village || 'Other') + '</span></div>');
+    out.push('<div class="result-item"><span class="result-label">Area</span><span class="result-value">' + area + ' sq ft</span></div>');
+    out.push('<div class="result-item"><span class="result-label">Price per sq ft</span><span class="result-value">' + formatRs(price) + '</span></div>');
+    out.push('<div class="result-item"><span class="result-label">Total Estimated Cost</span><span class="result-value">' + formatRs(total) + '</span></div>');
+    out.push('<p class="note">This is an instant estimate. Actual cost may vary after site visit.</p>');
+
+    if (results) results.innerHTML = out.join('');
+    if (resultsWrapper) resultsWrapper.style.display = 'block';
+}
+
+// Auto-bind events
+document.addEventListener('DOMContentLoaded', () => {
+    const lengthEl = document.getElementById('length');
+    const heightEl = document.getElementById('height');
+    const totalEl = document.getElementById('totalArea');
+    const villageEl = document.getElementById('village');
+
+    if (lengthEl && heightEl && totalEl){
+        const computeArea = () => {
+            const l = parseFloat(lengthEl.value) || 0;
+            const h = parseFloat(heightEl.value) || 0;
+            const area = (l > 0 && h > 0) ? Math.round(l * h) : '';
+            totalEl.value = area;
+        };
+        lengthEl.addEventListener('input', computeArea);
+        heightEl.addEventListener('input', computeArea);
+    }
+
+    if (villageEl){
+        villageEl.addEventListener('change', updatePrice);
+    }
+
+    // initialize display
+    updatePrice();
+});
+</script>
+</body>
+</html>
+

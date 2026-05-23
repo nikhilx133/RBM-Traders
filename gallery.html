@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - RBM Traders</title>
+    <meta name="description" content="View our completed wall construction projects and readymade wall installations by RBM Traders.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="loader" id="loader" aria-hidden="true">
+    <h1>RBM Traders<br>View our gallery...</h1>
+    <div class="loading-dots">
+        <span></span><span></span><span></span>
+    </div>
+</div>
+
+<div class="page-transition-overlay" id="pageTransitionOverlay"></div>
+
+<header class="navbar">
+    <div class="nav-left">
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sideMenu">
+            <span></span><span></span><span></span>
+        </button>
+        <a class="logo" href="index.html" aria-label="RBM Traders home">
+            <img src="logo.jpeg" alt="RBM Traders logo">
+            <strong data-i18n="brandName">RBM Traders</strong>
+        </a>
+    </div>
+    <nav class="desktop-nav" aria-label="Primary">
+        <a href="index.html" data-i18n="menuHome">Home</a>
+        <a href="products.html" data-i18n="menuProducts">Products</a>
+        <a href="gallery.html" class="active" data-i18n="menuGallery">Gallery</a>
+        <a href="work-done/index.html" data-i18n="menuProjects"> Our Work</a>
+        <a href="contact.html" data-i18n="menuContact">Contact</a>
+        <a href="instant-quotation.html" data-i18n="menuQuotation">Quotation</a>
+        <a href="https://maps.app.goo.gl/kAdwDStSetLQuG2U9" target="_blank" rel="noreferrer" data-i18n="viewLocation">
+            <i class="fas fa-location-dot"></i> Location
+        </a>
+    </nav>
+</header>
+
+<aside class="side-menu" id="sideMenu" aria-label="Mobile menu">
+    <a href="index.html"><i class="fas fa-home"></i> <span data-i18n="menuHome">Home</span></a>
+    <a href="products.html"><i class="fas fa-box"></i> <span data-i18n="menuProducts">Products</span></a>
+    <a href="gallery.html" class="active"><i class="fas fa-images"></i> <span data-i18n="menuGallery">Gallery</span></a>
+    <a href="work-done/index.html"><i class="fas fa-hammer"></i> <span data-i18n="menuProjects">Our Work</span></a>
+    <a href="contact.html"><i class="fas fa-phone"></i> <span data-i18n="menuContact">Contact</span></a>
+    <a href="instant-quotation.html"><i class="fas fa-calculator"></i> <span data-i18n="menuQuotation">Quotation</span></a>
+    <a href="https://maps.app.goo.gl/kAdwDStSetLQuG2U9" target="_blank" rel="noreferrer">
+        <i class="fas fa-location-dot"></i> <span data-i18n="viewLocation">Location</span>
+</aside>
+
+<div class="overlay" id="overlay"></div>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/918059807552?text=Hello%20RBM%20Traders,%20I%20love%20your%20gallery.%20Can%20you%20share%20more%20project%20details?" 
+   class="whatsapp-float" 
+   target="_blank" 
+   rel="noopener noreferrer"
+   aria-label="Chat with RBM Traders on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<main id="top">
+    <section class="work-header">
+        <div class="header-content">
+            <p class="eyebrow">Our Work</p>
+            <h1>Quality Projects Delivered</h1>
+            <p>
+                Explore our portfolio of successfully completed wall construction projects.
+                Each installation demonstrates our commitment to quality craftsmanship and professional execution.
+            </p>
+            <div class="hero-actions">
+                <a href="work-done/index.html" class="btn">View Full Portfolio</a>
+                <a href="instant-quotation.html" class="btn btn-secondary">Get a Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section reveal" id="gallery">
+        <div class="section-heading">
+            <p class="section-tag">Gallery</p>
+            <h2>Featured Projects</h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox('work-done/pictures/front.jpg')">
+                <div class="gallery-card photo-card">
+                    <img src="work-done/pictures/front.jpg" alt="Front view construction site">
+                    <div class="gallery-overlay">
+                        <h4>Construction Site Front</h4>
+                        <p>Professional site preparation and foundation work</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('work-done/pictures/w3.jpeg')">
+                <div class="gallery-card photo-card">
+                    <img src="work-done/pictures/w3.jpeg" alt="Completed wall installation">
+                    <div class="gallery-overlay">
+                        <h4>Wall Installation</h4>
+                        <p>Finished cemented boundary wall with smooth finish</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('work-done/pictures/w17.jpeg')">
+                <div class="gallery-card photo-card">
+                    <img src="work-done/pictures/w17.jpeg" alt="Customized wall design">
+                    <div class="gallery-overlay">
+                        <h4>Customized Wall Design</h4>
+                        <p>Innovative wall solutions tailored to client specifications</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('work-done/pictures/w10.jpeg')">
+                <div class="gallery-card photo-card">
+                    <img src="work-done/pictures/w10.jpeg" alt="small cabin">
+                    <div class="gallery-overlay">
+                        <h4>Small Cabin</h4>
+                        <p>Custom-built small cabin with cemented walls</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('work-done/pictures/w26.jpeg')">
+                <div class="gallery-card photo-card">
+                    <img src="work-done/pictures/w26.jpeg" alt="Chairs for outdoor use">
+                    <div class="gallery-overlay">
+                        <h4>Cemented Chairs</h4>
+                        <p>Weather-resistant concrete seating for gardens, parks, and outdoor spaces</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('work-done/pictures/w9.jpeg')">
+                <div class="gallery-card photo-card">
+                    <img src="work-done/pictures/w9.jpeg" alt="Designed chairs">
+                    <div class="gallery-overlay">
+                        <h4>Designed Chairs</h4>
+                        <p>Custom-designed concrete seating for aesthetic appeal</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('work-done/pictures/w25.jpeg')">
+                <div class="gallery-card photo-card">
+                    <img src="work-done/pictures/w25.jpeg" alt="Taar fencing installation">
+                    <div class="gallery-overlay">
+                        <h4>Taar Fencing Installation</h4>
+                        <p>Professional installation of Taar fencing systems for secure boundary protection</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('work-done/pictures/w20.jpeg')">
+                <div class="gallery-card photo-card">
+                    <img src="work-done/pictures/w20.jpeg" alt="Boundary Panels">
+                    <div class="gallery-overlay">
+                        <h4>Boundary Panels</h4>
+                        <p>Sturdy and durable boundary panels for effective property demarcation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt reveal" id="why-choose-us">
+        <div class="section-heading">
+            <p class="section-tag">Why Clients Choose Us</p>
+            <h2>Focused on durability, discipline, and trusted execution.</h2>
+        </div>
+        <div class="highlights">
+            <div class="highlight">
+                <span>01</span>
+                <h3>Transparent Commitments</h3>
+                <p>We set clear expectations and follow through with disciplined delivery.</p>
+            </div>
+            <div class="highlight">
+                <span>02</span>
+                <h3>Operational Dependability</h3>
+                <p>Our processes are designed to support stable procurement without disruption.</p>
+            </div>
+            <div class="highlight">
+                <span>03</span>
+                <h3>Relationship-First Approach</h3>
+                <p>We aim to build repeat trust, not just complete one transaction.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section reveal">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3 class="stat-number">50+</h3>
+                    <p class="stat-label">Projects Completed</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="stat-number">80+</h3>
+                    <p class="stat-label">Happy Clients</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="stat-number">3+</h3>
+                    <p class="stat-label">Years Experience</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="stat-number">98%</h3>
+                    <p class="stat-label">Satisfaction Rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Lightbox Modal -->
+<div id="lightboxModal" class="lightbox-modal">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <img id="lightboxImage" src="" alt="Enlarged Photo" class="lightbox-image">
+</div>
+
+<footer class="footer" data-i18n="footerText">
+    &copy; 2024 RBM Traders • Built with Trust &amp; Excellence
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
