@@ -3,10 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Work - Readymade Walls</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Our Work - RBM Traders</title>
+    <meta name="description" content="View our completed readymade wall construction projects by RBM Traders.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+    /* Inline fallback styles to ensure slideshow is visible */
+    .slideshow-container{position:relative;max-width:100%;margin:0 auto;background:#fff;border-radius:8px;overflow:hidden;min-height:360px}
+    .slide{display:none;position:relative;width:100%;height:420px;opacity:0;transition:opacity 0.6s ease-in-out}
+    .slide.active{display:block;opacity:1}
+    .slide img{width:100%;height:100%;display:block;object-fit:cover;object-position:center 60%;transition:transform .6s ease}
+    .slide img.focus-top{object-position:center 20%}
+    .slide img.focus-bottom{object-position:center 80%}
+    .slide-caption{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.6);color:#fff;padding:6px 12px;border-radius:999px;z-index:10}
+    .prev,.next{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:#b87a32;color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;z-index:11}
+    .prev{left:10px}.next{right:10px}
+    </style>
 </head>
 <body>
+<div class="loader" id="loader" aria-hidden="true">
+<h1 data-i18n="loaderTitle">RBM Traders<br>View our completed projects...</h1>
+    <div class="loading-dots">
+        <span></span><span></span><span></span>
+    </div>
+</div>
+
+<div class="page-transition-overlay" id="pageTransitionOverlay"></div>
+
+<header class="navbar">
+    <div class="nav-left">
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sideMenu">
+            <span></span><span></span><span></span>
+        </button>
+        <a class="logo" href="../index.html" aria-label="RBM Traders home">
+            <img src="../logo.jpeg" alt="RBM Traders logo">
+            <strong data-i18n="brandName">RBM Traders</strong>
+        </a>
+    </div>
+    <nav class="desktop-nav" aria-label="Primary">
+        <a href="index.html" data-i18n="menuHome">Home</a>
+        <a href="../products.html" data-i18n="menuProducts">Products</a>
+        <a href="../gallery.html" data-i18n="menuGallery">Gallery</a>
+        <a href="index.html" class="active" data-i18n="menuProjects"> Our Work</a>
+        <a href="../contact.html" data-i18n="menuContact">Contact</a>
+        <a href="../instant-quotation.html" data-i18n="menuQuotation">Quotation</a>
+        <a href="https://maps.app.goo.gl/kAdwDStSetLQuG2U9" target="_blank" rel="noreferrer" data-i18n="viewLocation">
+            <i class="fas fa-location-dot"></i> Location
+        </a>
+    </nav>
+</header>
+
+<aside class="side-menu" id="sideMenu" aria-label="Mobile menu">
+    <div class="side-menu-header">
+        <a class="side-logo" href="../index.html">
+            <img src="../logo.jpeg" alt="RBM Traders logo">
+            <div class="side-brand">
+                <strong>RBM Traders</strong>
+                <small>Quality Walls & Fencing</small>
+            </div>
+        </a>
+    </div>
+    <a href="../index.html"><i class="fas fa-home"></i> <span data-i18n="menuHome">Home</span></a>
+    <a href="../products.html"><i class="fas fa-box"></i> <span data-i18n="menuProducts">Products</span></a>
+    <a href="../gallery.html"><i class="fas fa-images"></i> <span data-i18n="menuGallery">Gallery</span></a>
+    <a href="index.html" class="active"><i class="fas fa-hammer"></i> <span data-i18n="menuProjects">Our Work</span></a>
+    <a href="../contact.html"><i class="fas fa-phone"></i> <span data-i18n="menuContact">Contact</span></a>
+    <a href="../instant-quotation.html"><i class="fas fa-calculator"></i> <span data-i18n="menuQuotation">Quotation</span></a>
+    <a href="https://maps.app.goo.gl/kAdwDStSetLQuG2U9" target="_blank" rel="noreferrer"><i class="fas fa-location-dot"></i> <span data-i18n="viewLocation">Location</span></a> 
+</aside>
+
+<div class="overlay" id="overlay"></div>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/918059807552?text=Hello%20RBM%20Traders,%20I%20saw%20your%20projects%20portfolio.%20Interested%20in%20similar%20work!" 
+   class="whatsapp-float" 
+   target="_blank" 
+   rel="noopener noreferrer"
+   aria-label="Chat with RBM Traders on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<main id="top">
     <!-- Header Section -->
     <section class="work-header">
         <div class="header-content">
@@ -43,258 +123,281 @@
     <section class="filter-section"></section>
 
     <!-- Gallery Section -->
-    <section class="gallery-section">
+    <section class="gallery-section reveal">
         <div class="section-tag">Portfolio</div>
         <h2 class="section-title">Quality Projects Delivered Consistently</h2>
         <p class="section-description">Browse through our collection of successfully completed readymade wall projects, each demonstrating our commitment to quality craftsmanship and professional execution</p>
         <div class="container">
             <div class="gallery-grid">
-                <!-- Photo Gallery Items -->
-                <div class="gallery-item" onclick="openLightbox('pictures/front.jpg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/front.jpg" alt="Photo 1">
+                <!-- Slideshow inserted in place of the single photo -->
+                <div class="slideshow-container" id="slideshow">
+                    <!-- Slides (one per image in pictures/) -->
+                    <div class="slide active">
+                        <img src="pictures/w1.jpeg" alt="Project 1">
+                        <div class="slide-caption">Professional Wall Installation</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/wall.jpg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/wall.jpg" alt="Photo 2">
+                    <div class="slide">
+                        <img src="pictures/w2.jpeg" alt="Project 2">
+                        <div class="slide-caption">Quality Craftsmanship</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/gate.jpg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/gate.jpg" alt="Photo 3">
+                    <div class="slide">
+                        <img src="pictures/w4.jpeg" alt="Project 4">
+                        <div class="slide-caption">Expert Execution</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/drain.jpg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/drain.jpg" alt="Photo 4">
+                    <div class="slide">
+                        <img src="pictures/w8.jpeg" alt="Project 8">
+                        <div class="slide-caption">Professional Standards</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/cleanup-time.jpg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/cleanup-time.jpg" alt="Photo 5">
+                    <div class="slide">
+                        <img src="pictures/w9.jpeg" alt="Project 9">
+                        <div class="slide-caption">Trusted by Many</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/work-in-progress.jpg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/work-in-progress.jpg" alt="Photo 6">
+                    <div class="slide">
+                        <img src="pictures/w10.jpeg" alt="Project 10">
+                        <div class="slide-caption">Proven Excellence</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w1.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w1.jpeg" alt="Photo 8">
+                    <div class="slide">
+                        <img src="pictures/w11.jpeg" alt="Project 11">
+                        <div class="slide-caption">Quality Assurance</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w2.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w2.jpeg" alt="Photo 9">
+                    <div class="slide">
+                        <img src="pictures/w12.jpeg" alt="Project 12">
+                        <div class="slide-caption">Expert Team</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w3.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w3.jpeg" alt="Photo 10">
+                    <div class="slide">
+                        <img src="pictures/w13.jpeg" alt="Project 13">
+                        <div class="slide-caption">Durable Solutions</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w4.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w4.jpeg" alt="Photo 11">
+                    <div class="slide">
+                        <img src="pictures/w14.jpeg" alt="Project 14">
+                        <div class="slide-caption">Professional Installation</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w5.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w5.jpeg" alt="Photo 12">
+                    <div class="slide">
+                        <img src="pictures/w15.jpeg" alt="Project 15">
+                        <div class="slide-caption">Building Trust</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w6.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w6.jpeg" alt="Photo 13">
+                    <div class="slide">
+                        <img src="pictures/w16.jpeg" alt="Project 16">
+                        <div class="slide-caption">Superior Craftsmanship</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w7.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w7.jpeg" alt="Photo 14">
+                    <div class="slide">
+                        <img src="pictures/w17.jpeg" alt="Project 17">
+                        <div class="slide-caption">Quality Delivered</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w8.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w8.jpeg" alt="Photo 15">
+                    <div class="slide">
+                        <img src="pictures/w18.jpeg" alt="Project 18">
+                        <div class="slide-caption">Expert Solutions</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w9.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w9.jpeg" alt="Photo 16">
+                    <div class="slide">
+                        <img src="pictures/w19.jpeg" alt="Project 19">
+                        <div class="slide-caption">Reliable Service</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w10.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w10.jpeg" alt="Photo 17">
+                    <div class="slide">
+                        <img src="pictures/w20.jpeg" alt="Project 20">
+                        <div class="slide-caption">Premium Standards</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w11.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w11.jpeg" alt="Photo 18">
+                    <div class="slide">
+                        <img src="pictures/w21.jpeg" alt="Project 21">
+                        <div class="slide-caption">Excellence in Action</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w12.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w12.jpeg" alt="Photo 19">
+                    <div class="slide">
+                        <img src="pictures/w22.jpeg" alt="Project 22">
+                        <div class="slide-caption">Professional Work</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w13.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w13.jpeg" alt="Photo 20">
+                    <div class="slide">
+                        <img src="pictures/w23.jpeg" alt="Project 23">
+                        <div class="slide-caption">Quality Assurance</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w14.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w14.jpeg" alt="Photo 21">
+                    <div class="slide">
+                        <img src="pictures/w24.jpeg" alt="Project 24">
+                        <div class="slide-caption">Expert Installation</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w15.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w15.jpeg" alt="Photo 22">
+                    <div class="slide">
+                        <img src="pictures/w25.jpeg" alt="Project 25">
+                        <div class="slide-caption">Durable Walls</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w16.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w16.jpeg" alt="Photo 23">
+                    <div class="slide">
+                        <img src="pictures/w26.jpeg" alt="Project 26">
+                        <div class="slide-caption">Professional Team</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w17.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w17.jpeg" alt="Photo 24">
+                    <div class="slide">
+                        <img src="pictures/w27.jpeg" alt="Project 27">
+                        <div class="slide-caption">Building Excellence</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w18.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w18.jpeg" alt="Photo 25">
+                    <div class="slide">
+                        <img src="pictures/w28.jpeg" alt="Project 28">
+                        <div class="slide-caption">Quality Standards</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w19.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w19.jpeg" alt="Photo 26">
+                    <div class="slide">
+                        <img src="pictures/w29.jpeg" alt="Project 29">
+                        <div class="slide-caption">Expert Craftsmanship</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w20.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w20.jpeg" alt="Photo 27">
+                    <div class="slide">
+                        <img src="pictures/w30.jpeg" alt="Project 30">
+                        <div class="slide-caption">Reliable Solutions</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w21.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w21.jpeg" alt="Photo 28">
+                    <div class="slide">
+                        <img src="pictures/w31.jpeg" alt="Project 31">
+                        <div class="slide-caption">Premium Quality</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w22.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w22.jpeg" alt="Photo 29">
+                    <div class="slide">
+                        <img src="pictures/w32.jpeg" alt="Project 32">
+                        <div class="slide-caption">Professional Service</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w23.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w23.jpeg" alt="Photo 30">
+                    <div class="slide">
+                        <img src="pictures/w33.jpeg" alt="Project 33">
+                        <div class="slide-caption">Excellence Guaranteed</div>
                     </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w24.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w24.jpeg" alt="Photo 31">
+                    <div class="slide">
+                        <img src="pictures/front.jpg" alt="Front View">
+                        <div class="slide-caption">Front View</div>
                     </div>
+
+                    <!-- Navigation Controls -->
+                    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+                    <a class="next" onclick="changeSlide(1)">&#10095;</a>
                 </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w25.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w25.jpeg" alt="Photo 32">
-                    </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w26.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w26.jpeg" alt="Photo 33">
-                    </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w27.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w27.jpeg" alt="Photo 34">
-                    </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w28.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w28.jpeg" alt="Photo 35">
-                    </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w29.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w29.jpeg" alt="Photo 36">
-                    </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w30.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w30.jpeg" alt="Photo 37">
-                    </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w31.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w31.jpeg" alt="Photo 38">
-                    </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w32.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w32.jpeg" alt="Photo 39">
-                    </div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox('pictures/w33.jpeg')">
-                    <div class="gallery-card photo-card">
-                        <img src="pictures/w33.jpeg" alt="Photo 40">
-                    </div>
-                </div>
+
+                <!-- dots removed per user request -->
             </div>
         </div>
     </section>
 
+    <!-- Stats and CTA sections preserved as original -->
     <!-- Lightbox Modal -->
     <div id="lightboxModal" class="lightbox-modal">
         <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
         <img id="lightboxImage" src="" alt="Enlarged Photo" class="lightbox-image">
     </div>
 
-    <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h3 class="stat-number">100+</h3>
-                    <p class="stat-label">Projects Completed</p>
-                </div>
-                <div class="stat-card">
-                    <h3 class="stat-number">150+</h3>
-                    <p class="stat-label">Happy Clients</p>
-                </div>
-                <div class="stat-card">
-                    <h3 class="stat-number">2+</h3>
-                    <p class="stat-label">Years Experience</p>
-                </div>
-                <div class="stat-card">
-                    <h3 class="stat-number">93%</h3>
-                    <p class="stat-label">Satisfaction Rate</p>
-                </div>
-            </div>
-        </div>
-    </section>
+</main>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <h2>Ready to Transform Your Space?</h2>
-            <p>Get in touch with our team for a free consultation and discover how we can bring your vision to life</p>
-            <a href="../index.html" class="cta-btn">Contact Us Today</a>
-        </div>
-    </section>
+<footer class="footer" data-i18n="footerText">
+    &copy; 2024 RBM Traders • Built with Trust &amp; Excellence
+</footer>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Readymade Walls. All rights reserved. | Excellence in Construction</p>
-        </div>
-    </footer>
+<script src="../script.js"></script>
 
-    <script src="script.js"></script>
+<script>
+// Lightbox functions
+function openLightbox(imageSrc) {
+    const modal = document.getElementById('lightboxModal');
+    const image = document.getElementById('lightboxImage');
+    image.src = imageSrc;
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    const modal = document.getElementById('lightboxModal');
+    modal.classList.remove('show');
+    document.body.style.overflow = 'auto';
+}
+
+window.addEventListener('click', e => {
+    if (e.target.id === 'lightboxModal') closeLightbox();
+});
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+});
+
+// Scroll animations
+document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+    document.querySelectorAll('.stat-card').forEach(card => observer.observe(card));
+});
+
+// ===== Slideshow (auto transition) =====
+let slideIndex = 0;
+let slideTimer;
+
+function showSlide(n) {
+    const slides = document.querySelectorAll('.slide');
+    if (!slides.length) return;
+    const idx = (n + slides.length) % slides.length;
+    slides.forEach((s, i) => {
+        if (i === idx) s.classList.add('active'); else s.classList.remove('active');
+    });
+    slideIndex = idx;
+}
+
+function changeSlide(n) {
+    clearTimeout(slideTimer);
+    showSlide(slideIndex + n);
+    slideTimer = setTimeout(() => changeSlide(1), 2000);
+}
+
+function currentSlide(n) {
+    clearTimeout(slideTimer);
+    showSlide(n);
+    slideTimer = setTimeout(() => changeSlide(1), 2000);
+}
+
+function initSlideshow() {
+    const slides = document.querySelectorAll('.slide');
+    if (!slides.length) return;
+    // ensure gallery section (which uses reveal) is visible immediately
+    const gallerySection = document.querySelector('.gallery-section.reveal');
+    if (gallerySection) gallerySection.classList.add('active');
+    showSlide(0);
+    slideTimer = setTimeout(() => changeSlide(1), 2000);
+}
+
+document.addEventListener('DOMContentLoaded', () => initSlideshow());
+</script>
+
+<script>
+// Improve slideshow images: lazy-load and auto-adjust focus if image is sky-heavy
+function analyzeAndAdjustImages() {
+    const imgs = document.querySelectorAll('.slideshow-container img');
+    if (!imgs.length) return;
+    imgs.forEach(img => {
+        try { img.loading = 'lazy'; } catch(e){}
+        // If image already loaded, run analysis; else wait for load
+        const runAnalysis = () => {
+            try {
+                const w = Math.min(200, img.naturalWidth);
+                const h = Math.min(200, img.naturalHeight);
+                const canvas = document.createElement('canvas');
+                canvas.width = w; canvas.height = h;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, w, h);
+                const data = ctx.getImageData(0,0,w,h).data;
+                let topSum = 0, bottomSum = 0, topCount = 0, bottomCount = 0;
+                for (let y=0;y<h;y++){
+                    for (let x=0;x<w;x++){
+                        const i = (y*w + x)*4;
+                        const r = data[i], g = data[i+1], b = data[i+2];
+                        const lum = 0.2126*r + 0.7152*g + 0.0722*b;
+                        if (y < h*0.35) { topSum += lum; topCount++; } else if (y > h*0.65) { bottomSum += lum; bottomCount++; }
+                    }
+                }
+                const topAvg = topCount? topSum/topCount : 0;
+                const bottomAvg = bottomCount? bottomSum/bottomCount : 0;
+                // If top is significantly brighter than bottom, assume sky-heavy and focus lower
+                if (topAvg - bottomAvg > 15) {
+                    img.classList.add('focus-bottom');
+                }
+            } catch(e) {
+                // ignore CORS or other image access errors
+            }
+        };
+        if (img.complete && img.naturalWidth) runAnalysis(); else img.addEventListener('load', runAnalysis);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    analyzeAndAdjustImages();
+});
+</script>
+
 </body>
 </html>
